@@ -13,8 +13,13 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@c6295a65d1254861815972266d5933fd6e532bdf # v2.11.1
+      with:
+        egress-policy: audit
+
     - name: Check out code
-      uses: actions/checkout@v1
+      uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e # v1.2.0
       with:
         fetch-depth: 0
     - name: Bump version and push tag
